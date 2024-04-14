@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %} 我的私人日記 {% endblock %}
+{% block content %}
+<!-- <form name="my form" action="/" method="get" class="text_left">
+        <label for="'byear">出生年</label>
+        <select name="byear">
+        {% for year in years %}
+        <option value="{{year}}">{{year}}</option>
+        {% endfor %}
+    </select><br>
+    喜歡的顏色，可複選
+    {% for color in color_lsit %}
+    <input type="checkbox" name="fcolor" value="{{color}}">{{color}}
+    {% endfor %}<br>
+
+        <labe for='user_id'>Your ID:</label>
+            <input id="user_id" type="text" name="user_id"></input>
+            <label for='user_pass'>Your Password:</label>
+            <input id="user_pass" type="password" name="user_pass"></input>
+            <input type="submit" value="登入" />
+            <input type="reset" value="清除重填" />
+    </form></br>
+    Your ID: {{ urid | default:"未輸入ID" }}<br>
+    出生年 : {{byear}}</br>
+    顏色喜好:
+    {% for c in unfcolor %}
+    {{c}}
+    {% empty %}
+    沒有選擇顏色
+    {% endfor %}
+    {% if verified %}
+    <em>恭喜通過驗證</em>
+    {% else %}
+    <em> 密碼或帳號打錯了喔</em>
+    {% endif %} -->
+
+<div class="container">
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}}">{{ message }}</div>
+    {% endfor %}
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="alert alert-primary">我的私人日記</h3>
+        </div>
+    </div>
+    {% for diary in diaries %}
+    {% cycle "<div class='row'>" "" ""%}
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header center">
+                    {{diary.ddate}}
+                </div>
+                <div class="card-body">
+                    {{ diary.note | linebreaks}}
+                </div>
+
+                <div class="card-footer">
+                    今日花費: {{diary.budget}} 元，體重:{{diary.weight}}公斤
+                </div>
+            </div>
+            {% cycle "" "" "</div>" %}
+        {% empty %}
+        <h3><em>目前沒有日記內容可供顯示，請登入網站或輸入日記內容</em></h3>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+
