@@ -59,7 +59,8 @@
                     今日花費: {{diary.budget}} 元，體重:{{diary.weight}}公斤
                 </div>
             </div>
-            {% cycle "" "" "</div>" %}
+        </div>
+    {% cycle "" "" "</div>" %}
         {% empty %}
         <h3><em>目前沒有日記內容可供顯示，請登入網站或輸入日記內容</em></h3>
         {% endfor %}
